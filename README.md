@@ -1,4 +1,8 @@
 # Project-B
+<p align="center">
+    <img src='asset/diagram.png?raw=1' width = '900' >
+</p>
+
 
 ## Directory
 
