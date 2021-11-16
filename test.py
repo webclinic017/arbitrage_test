@@ -38,7 +38,7 @@ df_btc.set_index('Time',inplace=True)
 bt = Backtest(df_btc, SmaCross, cash=100_000, commission=.002)
 stats = bt.run()
 
-result = bt.plot(filename='./result/backtesting_image',open_browser=False)
+result = bt.plot(filename='./asset/backtesting_result',open_browser=False)
 
 st.subheader(f'백테스팅 결과')
 st.bokeh_chart(result)
