@@ -4,7 +4,7 @@ from datetime import datetime as dt
 import pandas as pd
 import ccxt
 from backtesting import Backtest
-from SMA import SmaCross
+from utils.SMA import SmaCross
 # App title
 st.markdown('''
 # 백테스팅 테스트
