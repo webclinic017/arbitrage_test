@@ -1,6 +1,6 @@
 # Project-B
 
-# Directory
+## Directory
 
 | Path | Description
 | :--- | :----------
@@ -12,7 +12,7 @@
 | app.py | 웹페이지 실행
 | asset | 결과.html, 웹페이지.png
 
-# install
+## install
 
 ```.bash
 pip install streamlit
@@ -20,7 +20,7 @@ pip install cctx
 pip install backtesting
 ```
 
-# Usage
+## Usage
 
 ```.bash
 streamlit run app.py
