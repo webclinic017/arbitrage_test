@@ -14,7 +14,7 @@
 | &ensp;&ensp;&boxvr;&nbsp; Risk_Function | 리스크 알고리즘
 | &ensp;&ensp;&boxvr;&nbsp; TransactionCost_Function | 거래비용 알고리즘
 | &ensp;&ensp;&boxvr;&nbsp; Execution_Function | 거래실행 알고리즘
-| &ensp;&ensp;&boxur;&nbsp; PnO | 성과평가 및 최적화 알고리즘
+| &ensp;&ensp;&boxur;&nbsp; PnO_Function | 성과평가 및 최적화 알고리즘
 | app.py | 웹페이지 실행
 | asset | 결과.html, 웹페이지.png
 
