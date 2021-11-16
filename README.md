@@ -20,9 +20,10 @@ pip install cctx
 pip install backtesting
 ```
 
-## Usage
+## Main App
 
 ```.bash
+#run
 streamlit run app.py
 ```
 
