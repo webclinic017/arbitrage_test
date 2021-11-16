@@ -10,3 +10,15 @@
 | &ensp;&ensp;&boxvr;&nbsp; Risk_Function | 리스크 알고리즘
 | &ensp;&ensp;&boxur;&nbsp; TransactionCost_Function| 거래비용 알고리즘
 | app.py | 웹페이지 실행
+| asset | 결과.html, 웹페이지.png
+
+# Usage
+
+```.bash
+streamlit run app.py
+```
+
+<p align="center">
+    <img src='asset/webpage.png?raw=1' width = '900' >
+</p>
+
