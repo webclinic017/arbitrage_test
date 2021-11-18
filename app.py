@@ -3,8 +3,8 @@ import datetime
 from datetime import datetime as dt
 import pandas as pd
 import ccxt
-from backtesting import Backtest
-from utils.SMA import SmaCross
+# from backtesting import Backtest
+# from utils.SMA import SmaCross
 
 #~-=~-=~-=~-=~-=~-=~-=~-=~-=~-=~-=~-=~-=~-=~-=~-=~-
 # Set page-config
@@ -57,6 +57,20 @@ with st.sidebar.form(key="my_form"):
             help = '`Select` money to get started 😏')
     pressed = st.form_submit_button("Run")
 
+with st.sidebar.form(key="my_form1"):
+    st.subheader('**알파알고리즘**')
+    beta = st.checkbox('베타', value=True)
+    en_beta = st.checkbox('인핸스드 베타', value=True)
+    al_beta = st.checkbox('대체 베타', value=False)
+    pu_alpa = st.checkbox('퓨어 알파', value=False)
+    
+    st.subheader('**리스크알고리즘**')
+    beta = st.checkbox('기대수익률', value=True)
+    en_beta = st.checkbox('상관관계', value=True)
+    al_beta = st.checkbox('캐리', value=False)
+    pu_alpa = st.checkbox('손절매', value=False)
+    pressed2 = st.form_submit_button("Run")
+
 
 startDate = dt.strptime(str(start_date), "%Y-%m-%d")
 startDate = int(dt.timestamp(startDate)) * 1000
@@ -81,12 +95,12 @@ df_btc.set_index('Time',inplace=True)
 #~-=~-=~-=~-=~-=~-=~-=~-=~-=~-=~-=~-=~-=~-=~-=~-=~-
 #BactTesting
 #--------------------------------------------------
-bt = Backtest(df_btc, SmaCross, cash=100_000, commission=.002)
-stats = bt.run()
+# bt = Backtest(df_btc, SmaCross, cash=100_000, commission=.002)
+# stats = bt.run()
 
-result = bt.plot(filename='./asset/backtesting_result',open_browser=False)
+# result = bt.plot(filename='./asset/backtesting_result',open_browser=False)
 
 st.subheader(f'백테스팅 결과')
-st.bokeh_chart(result)
+# st.bokeh_chart(result)
 
 
