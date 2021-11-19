@@ -6,15 +6,13 @@ stages:
 ver:
   stage: ver
   script:
+    - python --version
     - whoami
 
 init:
   stage: init
   script:
     - pip install -r requirements.txt
-    - pip install ccxt
-    - pip install streamlit
-    - pip install backtesting
 
 deploy_staging:
   stage: deploy
