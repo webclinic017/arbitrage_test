@@ -6,8 +6,6 @@
     알고리즘 프로세스 다이어그램
     <br />
     <img src='asset/diagram.png?raw=1' width = '900' >
-    <br />
-    <a href="https://ailab-sample.herokuapp.com/">View Demo</a>
   </p>
 </div>
 
