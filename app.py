@@ -2,10 +2,11 @@ import streamlit as st
 import datetime
 from datetime import datetime as dt
 import pandas as pd
+import numpy as np
 import ccxt
 from backtesting import Backtest
-from utils.SMA import SmaCross
-
+from utils.Alpha_Function import SmaCross
+from utils import data_crawler
 #~-=~-=~-=~-=~-=~-=~-=~-=~-=~-=~-=~-=~-=~-=~-=~-=~-
 # Set page-config
 #--------------------------------------------------
@@ -59,7 +60,7 @@ with st.sidebar.form(key="my_form"):
 
 with st.sidebar.form(key="my_form1"):
     st.subheader('**알파알고리즘**')
-    beta = st.checkbox('베타', value=True)
+    SMA_alpha = st.checkbox('이동평균선_Test', value=True)
     en_beta = st.checkbox('인핸스드 베타', value=True)
     al_beta = st.checkbox('대체 베타', value=False)
     pu_alpa = st.checkbox('퓨어 알파', value=False)
@@ -74,33 +75,23 @@ with st.sidebar.form(key="my_form1"):
 
 startDate = dt.strptime(str(start_date), "%Y-%m-%d")
 startDate = int(dt.timestamp(startDate)) * 1000
-end = start_date - end_date
+end = (end_date - start_date).days
+if end > 1000 :
+    end = 1000
 
-#~-=~-=~-=~-=~-=~-=~-=~-=~-=~-=~-=~-=~-=~-=~-=~-=~-
-#BTC 가격
-#--------------------------------------------------
-binance = ccxt.binance()
-ohlcvs = binance.fetch_ohlcv('BTC/USDT', timeframe='1d', since=startDate, limit=100)
-
-for idx, ohlcv in enumerate(ohlcvs):
-    ohlcvs[idx] = [dt.fromtimestamp(ohlcv[0]/1000).strftime('%Y-%m-%d %H:%M:%S'), ohlcv[1], ohlcv[2], ohlcv[3], ohlcv[4],ohlcv[5]]
-
-df_btc = pd.DataFrame(ohlcvs)
-df_btc.columns = ['Time', 'Open','High','Low','Close','Volume']
-df_btc['Time'] = pd.to_datetime(df_btc['Time'], format='%Y-%m-%d %H:%M:%S', errors='raise')
-df_btc = df_btc[df_btc['Time'] >= '2021-06-24'].reset_index(drop = True)
-df_btc.set_index('Time',inplace=True)
+#Data input
+df_btc = data_crawler.btc(startDate,end)
 
 
 #~-=~-=~-=~-=~-=~-=~-=~-=~-=~-=~-=~-=~-=~-=~-=~-=~-
 #BactTesting
 #--------------------------------------------------
-bt = Backtest(df_btc, SmaCross, cash=100_000, commission=.002)
-stats = bt.run()
 
-result = bt.plot(filename='./asset/backtesting_result',open_browser=False)
+if SMA_alpha :
+    bt = Backtest(df_btc, SmaCross, cash=100_000, commission=.002)
+    stats = bt.run()
+    result = bt.plot(filename='./asset/backtesting_result',open_browser=False)
+    st.subheader(f'백테스팅 결과')
+    st.bokeh_chart(result)
 
-st.subheader(f'백테스팅 결과')
-st.bokeh_chart(result)
-
-
+else : st.subheader(f'알파값 입력 필수!')
