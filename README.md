@@ -3,9 +3,9 @@
   <h3 align="center">Project-B</h3>
 
   <p align="center">
-    알고리즘 프로세스 다이어그램
-    <br />
     <img src='asset/diagram.png?raw=1' width = '900' >
+    <br />
+    알고리즘 프로세스 다이어그램
   </p>
 </div>
 
