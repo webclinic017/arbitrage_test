@@ -18,6 +18,8 @@ init:
 
 deploy_staging:
   stage: deploy
+  variables:
+    HEROKU_API_KEY : $HEROKU_API_KEY
   script:
     - git remote add heroku https://heroku:$HEROKU_API_KEY@git.heroku.com/ailab-sample.git
     - git push heroku master
