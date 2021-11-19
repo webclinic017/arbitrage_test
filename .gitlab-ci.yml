@@ -22,6 +22,7 @@ deploy_staging:
     HEROKU_API_KEY : $HEROKU_API_KEY
   script:
     - git remote add heroku https://heroku:$HEROKU_API_KEY@git.heroku.com/ailab-sample.git
+    - git checkout -b 'master'
     - git push heroku master
     - echo "Deployed to Staging Server https://ailab-sample.herokuapp.com"
   environment:
