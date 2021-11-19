@@ -33,7 +33,7 @@ streamlit run app.py
 ```
 
 <p align="center">
-    <img src='asset/webpage.png?raw=1' width = '900' >
+    <img src='asset/webpage.gif?raw=1' width = '900' >
 </p>
 
 
