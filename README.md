@@ -1,4 +1,3 @@
-
 <div align="center">
 
   <h3 align="center">Project-B</h3>
@@ -11,6 +10,9 @@
     <a href="https://ailab-sample.herokuapp.com/">View Demo</a>
   </p>
 </div>
+
+## Demo
+[View Demo](https://ailab-sample.herokuapp.com/)
 
 ## Directory
 
