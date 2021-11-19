@@ -3,8 +3,8 @@ import datetime
 from datetime import datetime as dt
 import pandas as pd
 import ccxt
-# from backtesting import Backtest
-# from utils.SMA import SmaCross
+from backtesting import Backtest
+from utils.SMA import SmaCross
 
 #~-=~-=~-=~-=~-=~-=~-=~-=~-=~-=~-=~-=~-=~-=~-=~-=~-
 # Set page-config
@@ -95,12 +95,12 @@ df_btc.set_index('Time',inplace=True)
 #~-=~-=~-=~-=~-=~-=~-=~-=~-=~-=~-=~-=~-=~-=~-=~-=~-
 #BactTesting
 #--------------------------------------------------
-# bt = Backtest(df_btc, SmaCross, cash=100_000, commission=.002)
-# stats = bt.run()
+bt = Backtest(df_btc, SmaCross, cash=100_000, commission=.002)
+stats = bt.run()
 
-# result = bt.plot(filename='./asset/backtesting_result',open_browser=False)
+result = bt.plot(filename='./asset/backtesting_result',open_browser=False)
 
 st.subheader(f'백테스팅 결과')
-# st.bokeh_chart(result)
+st.bokeh_chart(result)
 
 
