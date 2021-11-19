@@ -1,9 +1,16 @@
-# Project-B
-<p align="center">
-    <img src='asset/diagram.png?raw=1' width = '900' >
-</p>
 
-# [Webpage(Heroku)](https://ailab-sample.herokuapp.com/)
+<div align="center">
+
+  <h3 align="center">Project-B</h3>
+
+  <p align="center">
+    알고리즘 프로세스 다이어그램
+    <br />
+    <img src='asset/diagram.png?raw=1' width = '900' >
+    <br />
+    <a href="https://ailab-sample.herokuapp.com/">View Demo</a>
+  </p>
+</div>
 
 ## Directory
 
