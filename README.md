@@ -22,9 +22,7 @@
 ## install
 
 ```.bash
-pip install streamlit
-pip install cctx
-pip install backtesting
+pip install -r requirements.txt
 ```
 
 ## Main App
