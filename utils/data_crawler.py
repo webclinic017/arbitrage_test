@@ -8,7 +8,7 @@ import pandas as pd
 
 def btc(startDate,end) :
     binance = ccxt.binance()
-    ohlcvs = binance.fetch_ohlcv('BTC/USDT', timeframe='1d', since=startDate, limit=100)
+    ohlcvs = binance.fetch_ohlcv('BTC/USDT', timeframe='1d', since=startDate, limit=end)
 
     for idx, ohlcv in enumerate(ohlcvs):
         ohlcvs[idx] = [dt.fromtimestamp(ohlcv[0]/1000).strftime('%Y-%m-%d %H:%M:%S'), ohlcv[1], ohlcv[2], ohlcv[3], ohlcv[4],ohlcv[5]]
