@@ -10,9 +10,7 @@
 </div>
 
 ## Demo
-```.bash
 [View Demo](https://ailab-sample.herokuapp.com/)
-```
 
 ## Directory
 
