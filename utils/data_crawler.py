@@ -27,7 +27,7 @@ def btc(startDate,end) :
 
 def klay(startDate,end) :
     binance = ccxt.binance()
-    ohlcvs = binance.fetch_ohlcv('KLAY/USDT',  '1d')
+    ohlcvs = binance.fetch_ohlcv('KLAY/USDT',  timeframe='1d', since=startDate, limit=end)
 
     for idx, ohlcv in enumerate(ohlcvs):
         ohlcvs[idx] = [dt.fromtimestamp(ohlcv[0]/1000).strftime('%Y-%m-%d %H:%M:%S'), ohlcv[1], ohlcv[2], ohlcv[3], ohlcv[4],ohlcv[5]]

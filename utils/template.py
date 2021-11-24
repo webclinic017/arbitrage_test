@@ -74,8 +74,8 @@ def Template() :
         st.subheader('**알고리즘**')
         Selectbox = st.selectbox(
             "Select Algorithm",
-            options=["SMA_CROSS", "en_beta", "al_beta", "pu_alpa"],
-            help="Select One Of The Four options"
+            options=["SMA_CROSS", "ABCD_Strategy"],
+            help="`Select` One Of The Algorithm 😏"
         )
         
         pressed2 = st.form_submit_button("Run")
