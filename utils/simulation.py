@@ -66,8 +66,8 @@ def trading_history(Selectbox,Selectbox_compare,stock,stock1,net,net1, std=2):
     Klay_Equity2 = [i[3] for i in net1 if i[2] != 'btc']
 
 
-    bottom_axes2.set_ylabel('Klay_Equity', color='#ffa33f')
-    bottom_axes2.plot_date(Klay_Time1, Klay_Equity1,linestyle='-', fmt='#ff005e',marker='',label= Selectbox_compare ,linewidth=7.0)
+    bottom_axes2.set_ylabel('Klay_Equity', color='#3388cf')
+    bottom_axes2.plot_date(Klay_Time1, Klay_Equity1,linestyle='-', fmt='palegreen',marker='',label= Selectbox_compare ,linewidth=7.0)
     bottom_axes2.plot_date(Klay_Time2, Klay_Equity2,linestyle='-', fmt='darkcyan',marker='',label= Selectbox ,linewidth=7.0)
     bottom_axes2.plot_date([], [],linestyle='-')
     bottom_axes2.legend(ncol=1,loc=2,frameon=True,fontsize=10, borderpad=.6, prop={'size': 20})
@@ -79,8 +79,8 @@ def trading_history(Selectbox,Selectbox_compare,stock,stock1,net,net1, std=2):
     Money_Equity2 = [i[3] for i in net1 if i[2] != 'klay']
 
 
-    bottom_axes1.set_ylabel('Money_Equity', color='#ffa33f')
-    bottom_axes1.plot_date(Money_Time1, Money_Equity1,linestyle='-', fmt='#ff005e',marker='',label= Selectbox_compare ,linewidth=7.0)
+    bottom_axes1.set_ylabel('Money_Equity', color='limegreen')
+    bottom_axes1.plot_date(Money_Time1, Money_Equity1,linestyle='-', fmt='palegreen',marker='',label= Selectbox_compare ,linewidth=7.0)
     bottom_axes1.plot_date(Money_Time2, Money_Equity2,linestyle='-', fmt='darkcyan',marker='',label= Selectbox ,linewidth=7.0)
     bottom_axes1.plot_date([], [],linestyle='-')
     bottom_axes1.legend(ncol=1,loc=2,frameon=True,fontsize=10, borderpad=.6, prop={'size': 20})
@@ -93,7 +93,7 @@ def trading_history(Selectbox,Selectbox_compare,stock,stock1,net,net1, std=2):
     BTC_Equity2 = [i[3] for i in net1 if i[2] == 'btc']
 
     bottom_axes.set_ylabel('BTC_Equity', color='#ffa33f')
-    bottom_axes.plot_date(BTC_Time1, BTC_Equity1,linestyle='-', fmt='#ff005e',marker='',label=Selectbox_compare,linewidth=7.0)
+    bottom_axes.plot_date(BTC_Time1, BTC_Equity1,linestyle='-', fmt='palegreen',marker='',label=Selectbox_compare,linewidth=7.0)
     bottom_axes.plot_date(BTC_Time2, BTC_Equity2,linestyle='-', fmt='darkcyan',marker='',label= Selectbox ,linewidth=7.0)
     bottom_axes.plot_date([], [],linestyle='-')
     bottom_axes.legend(ncol=1,loc=2,frameon=True,fontsize=10, borderpad=.6, prop={'size': 20})

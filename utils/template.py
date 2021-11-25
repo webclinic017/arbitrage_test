@@ -22,7 +22,7 @@ def Template() :
     #~-=~-=~-=~-=~-=~-=~-=~-=~-=~-=~-=~-=~-=~-=~-=~-=~-
     # Set page-config
     #--------------------------------------------------
-    st.set_page_config(page_title="AI_LAB",page_icon="📍", layout="centered", initial_sidebar_state='expanded')
+    st.set_page_config(page_title="Klay_To_BTC",page_icon=":chart_with_upwards_trend:", layout="centered", initial_sidebar_state='expanded')
 
     #~-=~-=~-=~-=~-=~-=~-=~-=~-=~-=~-=~-=~-=~-=~-=~-=~-
     # Set style
