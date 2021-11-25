@@ -60,7 +60,7 @@ def Template() :
 
     with st.sidebar.form(key="my_form1"):
         st.markdown("**운용기간**")
-        start_date = st.date_input("시작일", datetime.date(2021, 7, 1),help = '`Select` start_date to get started 😏')
+        start_date = st.date_input("시작일", datetime.date.today() - datetime.timedelta(days=100),help = '`Select` start_date to get started 😏')
         end_date = st.date_input("종료일", datetime.date.today(),help = '`Select` end_date to get started 😏')
 
         st.markdown("**운용Klay갯수**")
@@ -78,7 +78,6 @@ def Template() :
         
     with st.sidebar.form(key="my_form2"):
         st.subheader('**비교할 알고리즘**')
-        st.subheader(option)
         Selectbox_compare = st.selectbox(
             "Select Algorithm",
             options=option,

@@ -12,21 +12,24 @@ def Original(klay_count,commission_fee,df_klay,df_btc) :
     commission_fee = commission_fee
     
     for i in range(0,len(df_klay)) :
+        today_klay = df_klay.iloc[i]
+        today_btc = df_btc.iloc[i]
         count += 1
         klay += klay_count
-        net.append([df_klay.iloc[i].name, df_klay.iloc[i].Close, 'klay' ,klay])
+        net.append([today_klay.name, today_klay.Close, 'klay' ,klay])
         
         # Sell_klay
         if (count % 14) == 0 :
-            btc += money / df_btc.iloc[i].Close * commission_fee
-            net.append([df_btc.iloc[i].name, df_btc.iloc[i].Close, 'btc' ,btc])
+            money += klay * today_klay.Close * commission_fee
+            net.append([today_klay.name, today_klay.Close, 'money' ,money])
             klay = 0
-            money = 0
         
         # Buy_btc
-        else :
-            money += klay * df_klay.iloc[i].Close * commission_fee
-            net.append([df_klay.iloc[i].name, df_klay.iloc[i].Close, 'money' ,money])
+        if (count % 14) == 0 :
+            btc += money / today_btc.Close * commission_fee
+            net.append([today_btc.name, today_btc.Close, 'btc' ,btc])
+            money = 0
+        
             
     return net
 
