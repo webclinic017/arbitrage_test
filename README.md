@@ -44,11 +44,14 @@ streamlit run app.py
     <img src='asset/webpage.gif?raw=1' width = '900' >
 </p>
 
-<!-- Add_New Algorithm -->
-## Add_New Algorithm
-
+<!-- AddNew_Algorithm -->
+## Add New_Algorithm
+* Algorithm result as one list
+  * klay = [today_klay.Time, today_klay.Close, 'klay', klay]
+  * money = [today_klay.Time, today_klay.Close, 'money', money]
+  * btc = [today_btc.Time, today_btc.Close, 'btc', btc]
 - [x] Alpha_Function.py
-    - Add_New Algorithm
+    - Add New_Algorithm
 - [x] template.py
     - Add option value in function of Template
 - [x] simulation.py
