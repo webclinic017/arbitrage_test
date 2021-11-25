@@ -63,20 +63,34 @@ def Template() :
         start_date = st.date_input("시작일", datetime.date(2021, 7, 1),help = '`Select` start_date to get started 😏')
         end_date = st.date_input("종료일", datetime.date.today(),help = '`Select` end_date to get started 😏')
 
-        st.markdown("**운용자금**")
-        money = st.number_input("운용자금",
-                value=100_000,
-                min_value=100_000,
-                help = '`Select` money to get started 😏')
+        st.markdown("**운용Klay갯수**")
+        klay_count = st.number_input("일일당 추가할 klay 갯수",
+                value=100,
+                min_value=10,
+                help = '하루당 추가하는`klay` 갯수 😏')
+        
+        st.markdown("**수수료**")
+        commission_fee = st.number_input("거래소 수수료 계산",
+                value=0.05,
+                help = '수수료')
+        
         pressed1 = st.form_submit_button("Run")
         
     with st.sidebar.form(key="my_form2"):
-        st.subheader('**알고리즘**')
-        Selectbox = st.selectbox(
+        st.subheader('**비교할 알고리즘**')
+        Selectbox_compare = st.selectbox(
             "Select Algorithm",
-            options=["SMA_CROSS", "ABCD_Strategy"],
+            options=["Original"],
             help="`Select` One Of The Algorithm 😏"
         )
+        
+        st.subheader('**테스트할 알고리즘**')
+        Selectbox = st.selectbox(
+            "Select Algorithm",
+            options=["ABCD_Strategy"],
+            help="`Select` One Of The Algorithm 😏"
+        )
+        
         
         pressed2 = st.form_submit_button("Run")
 
@@ -87,4 +101,4 @@ def Template() :
     if end > 1000 :
         end = 1000
     
-    return startDate, end, money,Selectbox
+    return startDate, end, klay_count,Selectbox,Selectbox_compare,commission_fee
