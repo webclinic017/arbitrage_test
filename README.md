@@ -53,4 +53,4 @@ streamlit run app.py
     - Add option value in function of Template
 - [x] simulation.py
     - Add library
-    - Add below'# 비교할 알고리즘', '# 비교할 알고리즘' function of bactest
+    - Add below'# 비교할 알고리즘', '# 비교할 알고리즘' in function of bactest
