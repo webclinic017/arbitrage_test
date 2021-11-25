@@ -48,9 +48,9 @@ streamlit run app.py
 ## Add_New Algorithm
 
 - [x] Alpha_Function.py
-    - [ ]Add_New Algorithm
+    - Add_New Algorithm
 - [x] template.py
-    - [ ] Add option value in function of Template
+    - Add option value in function of Template
 - [x] simulation.py
-    - [ ]Add library
-    - [ ]Add below'# 비교할 알고리즘', '# 비교할 알고리즘' function of bactestin
+    - Add library
+    - Add below'# 비교할 알고리즘', '# 비교할 알고리즘' function of bactest
