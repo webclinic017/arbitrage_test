@@ -47,9 +47,10 @@ streamlit run app.py
 <!-- AddNew_Algorithm -->
 ## Add New_Algorithm
 * Algorithm result must be one list
-  * klay = [today_klay.Time, today_klay.Close, 'klay', klay]
-  * money = [today_klay.Time, today_klay.Close, 'money', money]
-  * btc = [today_btc.Time, today_btc.Close, 'btc', btc]
+  * 'net'
+    * klay = [today_klay.Time, today_klay.Close, 'klay', klay]
+    * money = [today_klay.Time, today_klay.Close, 'money', money]
+    * btc = [today_btc.Time, today_btc.Close, 'btc', btc]
 - [x] Alpha_Function.py
     - Add New_Algorithm
 - [x] template.py
