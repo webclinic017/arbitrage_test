@@ -14,7 +14,6 @@ def bactest(Selectbox,Selectbox_compare,klay_count,commission_fee,df_btc,df_klay
     # 비교할 알고리즘 
     if Selectbox_compare == 'Original' :
         net = Original(klay_count,commission_fee,df_klay,df_btc)
-        
     if Selectbox_compare == 'ABCD_Strategy' :
         net = ABCD_Strategy(klay_count,commission_fee,df_klay,df_btc)
         
@@ -22,7 +21,7 @@ def bactest(Selectbox,Selectbox_compare,klay_count,commission_fee,df_btc,df_klay
     if Selectbox == 'ABCD_Strategy' :
         net1 = ABCD_Strategy(klay_count,commission_fee,df_klay,df_btc)
     if Selectbox == 'Original' :
-        net1 = Original(klay_count,commission_fee,df_klay,df_btc)   
+        net1 = Original(klay_count,commission_fee,df_klay,df_btc)
             
     test_result = trading_history(Selectbox,Selectbox_compare,df_klay,df_btc,net,net1)
     st.pyplot(test_result)
@@ -59,12 +58,12 @@ def trading_history(Selectbox,Selectbox_compare,stock,stock1,net,net1, std=2):
 
 
 
-    top_axes1.plot_date([],[],label='BTC_Buy', c='#ff005e')
-    top_axes1.plot_date([],[],label='Klay_Sell', c='darkcyan')
+    top_axes1.plot_date([],[],label='BTC_Buy', c='#ff005e',markersize = 20)
+    top_axes1.plot_date([],[],label='Klay_Sell', c='darkcyan',markersize = 20)
 
     lines, labels = top_axes.get_legend_handles_labels()
     lines2, labels2 = top_axes1.get_legend_handles_labels()
-    top_axes1.legend(lines + lines2, labels + labels2,ncol=1, loc=2,frameon=True, borderpad=.6, prop={'size': 20})
+    lgnd =top_axes1.legend(lines + lines2, labels + labels2,ncol=1, loc=2,frameon=True, borderpad=.6, prop={'size': 20})
     
     # set bottom2 plot
     Klay_Time1 = [i[0] for i in net if i[2] != 'btc']
