@@ -23,7 +23,7 @@ def Template() :
     # Set page-config
     #--------------------------------------------------
     st.set_page_config(page_title="Klay_To_BTC",page_icon=":chart_with_upwards_trend:", layout="centered", initial_sidebar_state='expanded')
-
+    option = ["Original","ABCD_Strategy"]
     #~-=~-=~-=~-=~-=~-=~-=~-=~-=~-=~-=~-=~-=~-=~-=~-=~-
     # Set style
     #--------------------------------------------------
@@ -78,16 +78,17 @@ def Template() :
         
     with st.sidebar.form(key="my_form2"):
         st.subheader('**비교할 알고리즘**')
+        st.subheader(option)
         Selectbox_compare = st.selectbox(
             "Select Algorithm",
-            options=["Original"],
+            options=option,
             help="`Select` One Of The Algorithm 😏"
         )
         
         st.subheader('**테스트할 알고리즘**')
         Selectbox = st.selectbox(
             "Select Algorithm",
-            options=["ABCD_Strategy"],
+            options=option[::-1],
             help="`Select` One Of The Algorithm 😏"
         )
         

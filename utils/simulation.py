@@ -4,18 +4,25 @@ import streamlit as st
 import matplotlib
 import numpy as np
 from utils.Alpha_Function import Original
-from utils.Alpha_Function import abcd_strategy
+from utils.Alpha_Function import ABCD_Strategy
 from utils import template
 
 
 def bactest(Selectbox,Selectbox_compare,klay_count,commission_fee,df_btc,df_klay) :
     st.subheader(f'백테스팅 결과')
-
-    if Selectbox == 'ABCD_Strategy' :
-        net1 = abcd_strategy(klay_count,commission_fee,df_klay,df_btc)
-        
+    
+    # 비교할 알고리즘 
     if Selectbox_compare == 'Original' :
         net = Original(klay_count,commission_fee,df_klay,df_btc)
+        
+    if Selectbox_compare == 'ABCD_Strategy' :
+        net = ABCD_Strategy(klay_count,commission_fee,df_klay,df_btc)
+        
+    # 테스트할 알고리즘
+    if Selectbox == 'ABCD_Strategy' :
+        net1 = ABCD_Strategy(klay_count,commission_fee,df_klay,df_btc)
+    if Selectbox == 'Original' :
+        net1 = Original(klay_count,commission_fee,df_klay,df_btc)   
             
     test_result = trading_history(Selectbox,Selectbox_compare,df_klay,df_btc,net,net1)
     st.pyplot(test_result)

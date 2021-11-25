@@ -30,7 +30,7 @@ def Original(klay_count,commission_fee,df_klay,df_btc) :
             
     return net
 
-def abcd_strategy(klay_count,commission_fee,df_klay,df_btc) :
+def ABCD_Strategy(klay_count,commission_fee,df_klay,df_btc) :
     def data(df) :
         rolling_mean = df.Close.rolling(21).mean()
         rolling_std = df.Close.rolling(21).std()

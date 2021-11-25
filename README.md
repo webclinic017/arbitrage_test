@@ -44,4 +44,13 @@ streamlit run app.py
     <img src='asset/webpage.gif?raw=1' width = '900' >
 </p>
 
+<!-- Add_New Algorithm -->
+## Add_New Algorithm
 
+- [x] Alpha_Function.py
+    - [ ]Add_New Algorithm
+- [x] template.py
+    - [ ] Add option value in function of Template
+- [x] simulation.py
+    - [ ]Add library
+    - [ ]Add below'# 비교할 알고리즘', '# 비교할 알고리즘' function of bactestin
