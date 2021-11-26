@@ -16,11 +16,11 @@ def trading_history(Selectbox,Selectbox_compare,klay,btc,net,net1, std=2):
     bottom_axes2 = plt.subplot2grid((6,4), (3,0), rowspan=1, colspan=4, sharex=top_axes)
     bottom_axes1 = plt.subplot2grid((6,4), (4,0), rowspan=1, colspan=4, sharex=top_axes)
     bottom_axes = plt.subplot2grid((6,4), (5,0), rowspan=1, colspan=4, sharex=top_axes)   
-
+    top_axes1 = top_axes.twinx()
+    
     # set top plot
     top_axes.plot(klay.index, klay.Close, color='#3388cf', label='KLAY_Price',linewidth=7.0)
     top_axes.set_ylabel('KLAY_Price',color='#3388cf')
-    top_axes1 = top_axes.twinx()
     top_axes1.set_ylabel('BTC_Price', color='#ffa33f')
     top_axes1.plot(btc.index, btc.Close, color='#ffa33f', label='BTC_Price',linewidth=7.0)
 
@@ -28,11 +28,11 @@ def trading_history(Selectbox,Selectbox_compare,klay,btc,net,net1, std=2):
         
             if j[2] == 'btc' :
                 color = '#ff005e'
-                top_axes1.plot_date(j[0], j[1], color=color,markersize = 20)
+                top_axes1.plot_date(j[0], j[1], color=color,markersize = 20, alpha=0.7)
 
             if j[2] == 'money' :
                 color = 'darkcyan'
-                top_axes.plot_date(j[0], j[1], color=color,markersize = 20)        
+                top_axes.plot_date(j[0], j[1], color=color,markersize = 20, alpha=0.7)        
 
 
 
