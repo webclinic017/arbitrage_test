@@ -3,6 +3,7 @@ import pandas as pd
 import numpy as np
 import datetime
 from datetime import datetime as dt
+from utils import Alpha_Function
 
 def stats_df(stats) :
     stats_df = pd.DataFrame(stats)
@@ -23,7 +24,7 @@ def Template() :
     # Set page-config
     #--------------------------------------------------
     st.set_page_config(page_title="Klay_To_BTC",page_icon=":chart_with_upwards_trend:", layout="centered", initial_sidebar_state='expanded')
-    option = ["Original","ABCD_Strategy"]
+    option = [prop for prop in dir(Alpha_Function) if (prop[0] != "_" ) & (prop != 'np') & (prop != 'pd')& (prop != 'Run_Algo')]
     #~-=~-=~-=~-=~-=~-=~-=~-=~-=~-=~-=~-=~-=~-=~-=~-=~-
     # Set style
     #--------------------------------------------------

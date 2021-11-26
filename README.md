@@ -54,7 +54,6 @@ streamlit run app.py
 - [x] Alpha_Function.py
     - Add New_Algorithm
 - [x] template.py
-    - Add option value in function of Template
+    - if use another library out of Alpha_Function put exception in option
 - [x] simulation.py
-    - Add library
     - Add below'# 비교할 알고리즘', '# 비교할 알고리즘' in function of bactest
