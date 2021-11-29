@@ -1,93 +1,104 @@
 import pandas as pd
 import numpy as np
+import pandas_ta as ta
 
 def Run_Algo(Selectbox,Selectbox_compare,klay_count,commission_fee,df_btc,df_klay) :
     
     # 비교할 알고리즘 
-    net = globals()[Selectbox_compare](klay_count,commission_fee,df_klay,df_btc)        
+    net1 = globals()[Selectbox_compare](klay_count,commission_fee,df_klay,df_btc)        
     # 테스트할 알고리즘
-    net1 = globals()[Selectbox](klay_count,commission_fee,df_klay,df_btc)
+    net2 = globals()[Selectbox](klay_count,commission_fee,df_klay,df_btc)
     
-    return net, net1
+    return net1, net2
 
-def Original(klay_count,commission_fee,df_klay,df_btc) :
+def Rebalance14_Strategy(klay_count,commission_fee,df_klay,df_btc) :
+    
+    def signal(df) :
+        signals = pd.DataFrame()
+        signals['Close'] = df_btc['Close']
+        signals['signal'] = -1
+        signals = signals.reset_index()
+        signals.loc[(signals.index % 14 == 0) ,'signal'] = 1
+        return list(signals['signal'])
+
+    #리밸런스 14일
+    signal_btc = signal(df_btc)
+    signal_klay = signal(df_klay)
+    klay = 0
+    money = 0
+    btc = 0
     net = []
 
-    #리밸런싱 14일
-    klay = 0
-    btc = 0
-    money = 0
-    count = 0
-    
-    for i in range(0,len(df_klay)) :
-        today_klay = df_klay.iloc[i]
-        today_btc = df_btc.iloc[i]
-        count += 1
-        klay += klay_count
-        net.append([today_klay.name, today_klay.Close, 'klay' ,klay])
-        
-        # Sell_klay
-        if (count % 14) == 0 :
-            money += klay * today_klay.Close * commission_fee
-            net.append([today_klay.name, today_klay.Close, 'money' ,money])
-            klay = 0
-        
-        # Buy_btc
-        if (count % 14) == 0 :
-            btc += money / today_btc.Close * commission_fee
-            net.append([today_btc.name, today_btc.Close, 'btc' ,btc])
-            money = 0
-        
-            
+    for i in range(len(df_btc)):
+      today_klay = df_klay.iloc[i]
+      today_btc = df_btc.iloc[i]
+      Sell_signal = signal_klay[i]
+      Buy_signal = signal_btc[i]
+      klay += klay_count
+      net.append([today_klay.name, today_klay.Close, 'klay', klay])
+
+      # Sell_klay
+      if Sell_signal == -1:
+        if klay > 0:
+              money += klay * today_klay.Close * commission_fee
+              net.append([today_klay.name, today_klay.Close, 'money', money])
+              klay = 0
+
+      # Buy_btc
+      if Buy_signal == 1:
+        if money > 0:
+              btc += money / today_btc.Close * commission_fee
+              net.append([today_btc.name, today_btc.Close, 'btc', btc])
+              money = 0
+
     return net
 
 def ABCD_Strategy(klay_count,commission_fee,df_klay,df_btc) :
-    def data(df) :
+    def signal(df) :
+        u=0.03
+        l=0.03
         rolling_mean = df.Close.rolling(21).mean()
         rolling_std = df.Close.rolling(21).std()
-        df['upper_band'] = rolling_mean + (rolling_std*2)
-        df['lower_band'] = rolling_mean - (rolling_std*2)
-        df['MA_21'] = df['Close'].rolling(21).mean().shift()
-        exp1 = df.Close.ewm(span=12, adjust=False).mean()
-        exp2 = df.Close.ewm(span=26, adjust=False).mean()
-        df['macd'] = exp1-exp2
-        df['signal'] = df.macd.ewm(span=9, adjust=False).mean()
-        df['Time'] = df.index
-        df = df.reset_index(drop=True)
+        signals = pd.DataFrame(index=df.index)
+        signals['Close'] = df['Close']
+        signals['signal'] = 0.0
+        signals['upper_band'] = rolling_mean + (rolling_std*2)
+        signals['lower_band'] = rolling_mean - (rolling_std*2)
+        signals['MA_21'] = signals['Close'].rolling(21).mean().shift()
+        signals.loc[(signals.Close > signals.MA_21) & (abs(1 - signals.upper_band / signals.Close) < l) , 'signal'] = -1
+        signals.loc[(signals.Close < signals.MA_21) & (abs(1 - signals.Close / signals.lower_band) < u), 'signal'] = 1
 
-        return df
+        return list(signals['signal'])
 
-    df_btc = data(df_btc)
-    df_klay = data(df_klay)
-
+    signal_btc = signal(df_btc)
+    signal_klay = signal(df_klay)
     klay = 0
     money = 0
     btc = 0
     net = []
-    u=0.03
-    l=0.03
 
     for i in range(len(df_btc)):
-        today_klay = df_klay.iloc[i]
-        today_btc = df_btc.iloc[i]
-        klay += klay_count
-        net.append([today_klay.Time, today_klay.Close, 'klay', klay])
-        
-        # Sell_klay
-        if (today_klay.Close > today_klay.MA_21) and (abs(1 - today_klay.upper_band / today_klay.Close) < l):
-            if klay > 0:
-                money += klay * today_klay.Close * commission_fee
-                net.append([today_klay.Time, today_klay.Close, 'money', money])
-                klay = 0
+      today_klay = df_klay.iloc[i]
+      today_btc = df_btc.iloc[i]
+      Sell_signal = signal_klay[i]
+      Buy_signal = signal_btc[i]
+      klay += klay_count
+      net.append([today_klay.name, today_klay.Close, 'klay', klay])
 
-                
-        # Buy_btc
-        if (today_btc.Close < today_btc.MA_21) and (abs(1 - today_btc.Close / today_btc.lower_band) < u):
-            if money > 0:
-                btc += money / today_btc.Close * commission_fee
-                net.append([today_btc.Time, today_btc.Close, 'btc', btc])
-                money = 0
-                
+      # Sell_klay
+      if Sell_signal == -1:
+        if klay > 0:
+              money += klay * today_klay.Close * commission_fee
+              net.append([today_klay.name, today_klay.Close, 'money', money])
+              klay = 0
+
+      # Buy_btc
+      if Buy_signal == 1:
+        if money > 0:
+              btc += money / today_btc.Close * commission_fee
+              net.append([today_btc.name, today_btc.Close, 'btc', btc])
+              money = 0
+
     return net
 
 def Turtle_Strategy(klay_count,commission_fee,df_klay,df_btc) :
@@ -135,7 +146,7 @@ def Turtle_Strategy(klay_count,commission_fee,df_klay,df_btc) :
 
     return net
 
-def moving_average_agent(klay_count,commission_fee,df_klay,df_btc) :
+def moving_average_Strategy(klay_count,commission_fee,df_klay,df_btc) :
 
     # 10일 이동평균선이 20일 이동평균선 위에 있을때 사고 아님 팔고
     def signal(df) :
@@ -167,19 +178,101 @@ def moving_average_agent(klay_count,commission_fee,df_klay,df_btc) :
         Sell_signal = signal_klay[i]
         Buy_signal = signal_btc[i]
         klay += klay_count
-        net.append([today_klay.Time, today_klay.Close, 'klay', klay])
+        net.append([today_klay.name, today_klay.Close, 'klay', klay])
 
         # Sell_klay
         if Sell_signal == -1:
           if klay > 0:
                 money += klay * today_klay.Close * commission_fee
-                net.append([today_klay.Time, today_klay.Close, 'money', money])
+                net.append([today_klay.name, today_klay.Close, 'money', money])
                 klay = 0
 
         # Buy_btc
         if Buy_signal == 1:
           if money > 0:
                 btc += money / today_btc.Close * commission_fee
-                net.append([today_btc.Time, today_btc.Close, 'btc', btc])
+                net.append([today_btc.name, today_btc.Close, 'btc', btc])
                 money = 0
+    return net
+
+def RSI21_Strategy(klay_count,commission_fee,df_klay,df_btc) :
+    def signal(df) :
+        rsi = df.ta.rsi(length = 21,append=True)
+        RSIoverSold = 50
+        RSIoverBought = 50
+        signals = pd.DataFrame(index=df.index)
+        signals['signal'] = 0.0
+        signals['RSI_21'] = df['RSI_21']
+        signals.loc[signals.RSI_21 > RSIoverBought, 'signal'] = -1
+        signals.loc[signals.RSI_21 < RSIoverSold , 'signal'] = 1
+        signals
+        return list(signals['signal']) 
+
+    signal_klay = signal(df_klay)
+    signal_btc = signal(df_btc)
+
+    klay = 0
+    money = 0
+    btc = 0
+    net = []
+    
+    for i in range(len(df_btc)):
+        today_klay = df_klay.iloc[i]
+        today_btc = df_btc.iloc[i]
+        Sell_signal = signal_klay[i]
+        Buy_signal = signal_btc[i]
+        klay += klay_count
+        net.append([today_klay.name, today_klay.Close, 'klay', klay])
+
+        # Sell_klay
+        if Sell_signal == -1:
+          if klay > 0:
+                money += klay * today_klay.Close * commission_fee
+                net.append([today_klay.name, today_klay.Close, 'money', money])
+                klay = 0
+
+        # Buy_btc
+        if Buy_signal == 1:
+          if money > 0:
+                btc += money / today_btc.Close * commission_fee
+                net.append([today_btc.name, today_btc.Close, 'btc', btc])
+                money = 0
+
+    return net
+
+def SuperTrend_Strategy(klay_count,commission_fee,df_klay,df_btc) :
+    def signal(df) :
+        df.ta.supertrend(append = True)
+        return list(df['SUPERTd_7_3.0'])
+
+    signal_klay = signal(df_klay)
+    signal_btc = signal(df_btc)
+
+    klay = 0
+    money = 0
+    btc = 0
+    net = []
+    
+    for i in range(len(df_btc)):
+        today_klay = df_klay.iloc[i]
+        today_btc = df_btc.iloc[i]
+        Sell_signal = signal_klay[i]
+        Buy_signal = signal_btc[i]
+        klay += klay_count
+        net.append([today_klay.name, today_klay.Close, 'klay', klay])
+
+        # Sell_klay
+        if Sell_signal == -1:
+          if klay > 0:
+                money += klay * today_klay.Close * commission_fee
+                net.append([today_klay.name, today_klay.Close, 'money', money])
+                klay = 0
+
+        # Buy_btc
+        if Buy_signal == 1:
+          if money > 0:
+                btc += money / today_btc.Close * commission_fee
+                net.append([today_btc.name, today_btc.Close, 'btc', btc])
+                money = 0
+
     return net

@@ -2,7 +2,7 @@ import matplotlib.pyplot as plt
 import matplotlib.dates as dates
 import streamlit as st
 
-def trading_history(Selectbox,Selectbox_compare,klay,btc,net,net1, std=2):
+def trading_history(Selectbox,Selectbox_compare,klay,btc,net,net2, std=2):
     st.subheader(f'백테스팅 결과')
     #set plot
     fig = plt.figure(figsize=(20,20))
@@ -24,7 +24,7 @@ def trading_history(Selectbox,Selectbox_compare,klay,btc,net,net1, std=2):
     top_axes1.set_ylabel('BTC_Price', color='#ffa33f')
     top_axes1.plot(btc.index, btc.Close, color='#ffa33f', label='BTC_Price',linewidth=7.0)
 
-    for i,j in zip(net,net1):
+    for i,j in zip(net,net2):
         
             if j[2] == 'btc' :
                 color = '#ff005e'
@@ -46,8 +46,8 @@ def trading_history(Selectbox,Selectbox_compare,klay,btc,net,net1, std=2):
     # set bottom2 plot
     Klay_Time1 = [i[0] for i in net if i[2] != 'btc']
     Klay_Equity1 = [i[3] for i in net if i[2] != 'btc']   
-    Klay_Time2 = [i[0] for i in net1 if i[2] != 'btc']
-    Klay_Equity2 = [i[3] for i in net1 if i[2] != 'btc']
+    Klay_Time2 = [i[0] for i in net2 if i[2] != 'btc']
+    Klay_Equity2 = [i[3] for i in net2 if i[2] != 'btc']
 
 
     bottom_axes2.set_ylabel('Klay_Equity', color='#3388cf')
@@ -59,8 +59,8 @@ def trading_history(Selectbox,Selectbox_compare,klay,btc,net,net1, std=2):
     # set bottom1 plot
     Money_Time1 = [i[0] for i in net if i[2] != 'klay']
     Money_Equity1 = [i[3] for i in net if i[2] != 'klay']   
-    Money_Time2 = [i[0] for i in net1 if i[2] != 'klay']
-    Money_Equity2 = [i[3] for i in net1 if i[2] != 'klay']
+    Money_Time2 = [i[0] for i in net2 if i[2] != 'klay']
+    Money_Equity2 = [i[3] for i in net2 if i[2] != 'klay']
 
 
     bottom_axes1.set_ylabel('Money_Equity', color='limegreen')
@@ -72,9 +72,9 @@ def trading_history(Selectbox,Selectbox_compare,klay,btc,net,net1, std=2):
     # set bottom plot
 
     BTC_Time1 = [i[0] for i in net if i[2] == 'btc']
-    BTC_Time2 = [i[0] for i in net1 if i[2] == 'btc']
+    BTC_Time2 = [i[0] for i in net2 if i[2] == 'btc']
     BTC_Equity1 = [i[3] for i in net if i[2] == 'btc']
-    BTC_Equity2 = [i[3] for i in net1 if i[2] == 'btc']
+    BTC_Equity2 = [i[3] for i in net2 if i[2] == 'btc']
 
     bottom_axes.set_ylabel('BTC_Equity', color='#ffa33f')
     bottom_axes.plot_date(BTC_Time1, BTC_Equity1,linestyle='-', fmt='palegreen',marker='',label=Selectbox_compare,linewidth=7.0)

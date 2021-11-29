@@ -44,14 +44,12 @@ streamlit run app.py
     <img src='asset/webpage.gif?raw=1' width = '900' >
 </p>
 
-<!-- AddNew_Algorithm -->
-## Add New_Algorithm
-* Algorithm result must be one list
+<!-- AddNew_Strategy -->
+## Add New_Strategy
+* Strategy result must be one list and named as '<Stragegy_Name>_Strategy'
   * net
     * klay = [today_klay.Time, today_klay.Close, 'klay', klay]
     * money = [today_klay.Time, today_klay.Close, 'money', money]
     * btc = [today_btc.Time, today_btc.Close, 'btc', btc]
 - [x] Alpha_Function.py
-    - Add New_Algorithm
-- [x] template.py
-    - if use another library out of Alpha_Function put exception in option
+    - Add New_Strategy

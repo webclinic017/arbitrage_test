@@ -19,10 +19,10 @@ df_btc = data_crawler.btc(startDate,end)
 #~-=~-=~-=~-=~-=~-=~-=~-=~-=~-=~-=~-=~-=~-=~-=~-=~-
 #Run Algorithm
 #--------------------------------------------------
-net,net1 = Run_Algo(Selectbox,Selectbox_compare,klay_count,commission_fee,df_btc,df_klay)
+net1,net2 = Run_Algo(Selectbox,Selectbox_compare,klay_count,commission_fee,df_btc,df_klay)
 
 #~-=~-=~-=~-=~-=~-=~-=~-=~-=~-=~-=~-=~-=~-=~-=~-=~-
 #BactTesting
 #--------------------------------------------------
-simulation.trading_history(Selectbox,Selectbox_compare,df_klay,df_btc,net,net1)
+simulation.trading_history(Selectbox,Selectbox_compare,df_klay,df_btc,net1,net2)
 

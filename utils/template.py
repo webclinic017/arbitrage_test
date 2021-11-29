@@ -24,7 +24,7 @@ def Template() :
     # Set page-config
     #--------------------------------------------------
     st.set_page_config(page_title="Klay_To_BTC",page_icon=":chart_with_upwards_trend:", layout="centered", initial_sidebar_state='expanded')
-    option = [prop for prop in dir(Alpha_Function) if (prop[0] != "_" ) & (prop != 'np') & (prop != 'pd')& (prop != 'Run_Algo')]
+    option = [prop for prop in dir(Alpha_Function)if '_Strategy' in prop]
     #~-=~-=~-=~-=~-=~-=~-=~-=~-=~-=~-=~-=~-=~-=~-=~-=~-
     # Set style
     #--------------------------------------------------
@@ -78,18 +78,18 @@ def Template() :
         pressed1 = st.form_submit_button("Run")
         
     with st.sidebar.form(key="my_form2"):
-        st.subheader('**비교할 알고리즘**')
+        st.subheader('**비교할 전략**')
         Selectbox_compare = st.selectbox(
-            "Select Algorithm",
+            "Select Strategy",
             options=option,
-            help="`Select` One Of The Algorithm 😏"
+            help="`Select` One Of The Strategy 😏"
         )
         
-        st.subheader('**테스트할 알고리즘**')
+        st.subheader('**테스트할 전략**')
         Selectbox = st.selectbox(
-            "Select Algorithm",
+            "Select Strategy",
             options=option[::-1],
-            help="`Select` One Of The Algorithm 😏"
+            help="`Select` One Of The Strategy 😏"
         )
         
         
