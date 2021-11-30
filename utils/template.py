@@ -3,7 +3,6 @@ import pandas as pd
 import numpy as np
 import datetime
 from datetime import datetime as dt
-from utils.Strategy import Alpha_Function
 
 def stats_df(stats) :
     stats_df = pd.DataFrame(stats)
