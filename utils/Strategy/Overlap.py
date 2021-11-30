@@ -1,3 +1,13 @@
+import pandas as pd
+import numpy as np
+import pandas_ta as ta
+
+def Run(Selectbox,klay_count,commission_fee,df_btc,df_klay) :
+    
+    net = globals()[Selectbox](klay_count,commission_fee,df_klay,df_btc)        
+
+    return net
+
 def moving_average_Strategy(klay_count,commission_fee,df_klay,df_btc) :
 
     # 10일 이동평균선이 20일 이동평균선 위에 있을때 사고 아님 팔고

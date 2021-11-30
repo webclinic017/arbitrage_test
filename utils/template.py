@@ -19,7 +19,7 @@ def stats_df(stats) :
     
     return stats_df
 
-def Template() :
+def Template(df) :
     #~-=~-=~-=~-=~-=~-=~-=~-=~-=~-=~-=~-=~-=~-=~-=~-=~-
     # Set page-config
     #--------------------------------------------------
@@ -59,7 +59,7 @@ def Template() :
     # Sidebar Setup
     #--------------------------------------------------
 
-    with st.sidebar.form(key="my_form1"):
+    with st.sidebar.form(key="운용기간"):
         st.markdown("**운용기간**")
         start_date = st.date_input("시작일", datetime.date.today() - datetime.timedelta(days=100),help = '`Select` start_date to get started 😏')
         end_date = st.date_input("종료일", datetime.date.today(),help = '`Select` end_date to get started 😏')
@@ -76,24 +76,47 @@ def Template() :
                 help = '수수료')
         
         pressed1 = st.form_submit_button("Run")
+
+
+    st.sidebar.subheader('**비교할 전략 선택**')
+    Category_compare = df['Category'].unique()
+    Category_compare_choice = st.sidebar.selectbox("Select Category", Category_compare,key="Category_compare")
+    Strategy_compare_option = df[(df['Category'] == Category_compare_choice)]
+    Selectbox_compare = st.sidebar.selectbox(
+                                    "Select Strategy",
+                                    options=Strategy_compare_option,
+                                    key="Selectbox_compare",
+                                    help="`Select` One Of The Strategy 😏"
+
+                                )
+
+    st.sidebar.subheader('**테스트할 전략 선택**')
+    Category = df['Category'].unique()
+    Category_choice = st.sidebar.selectbox("Select Category", Category,key="Category")   
+    Strategy_option = df[(df['Category'] == Category_choice)]
+    Selectbox = st.sidebar.selectbox(
+                                "Select Strategy",
+                                options=Strategy_option[::-1],
+                                key="Selectbox",
+                                help="`Select` One Of The Strategy 😏"
+                            )
         
-    with st.sidebar.form(key="my_form2"):
-        st.subheader('**비교할 전략**')
-        Selectbox_compare = st.selectbox(
-            "Select Strategy",
-            options=option,
-            help="`Select` One Of The Strategy 😏"
-        )
+    # with st.sidebar.form(key="my_form3"):
+    #     st.subheader('**비교할 전략**')
+    #     Selectbox_compare = st.selectbox(
+    #         "Select Strategy",
+    #         options=option,
+    #         help="`Select` One Of The Strategy 😏"
+    #     )
         
-        st.subheader('**테스트할 전략**')
-        Selectbox = st.selectbox(
-            "Select Strategy",
-            options=option[::-1],
-            help="`Select` One Of The Strategy 😏"
-        )
+    #     st.subheader('**테스트할 전략**')
+    #     Selectbox = st.selectbox(
+    #         "Select Strategy",
+    #         options=option[::-1],
+    #         help="`Select` One Of The Strategy 😏"
+    #     )
         
-        
-        pressed2 = st.form_submit_button("Run")
+    #     pressed2 = st.form_submit_button("Run")
 
 
     startDate = dt.strptime(str(start_date), "%Y-%m-%d")
@@ -102,4 +125,4 @@ def Template() :
     if end > 1000 :
         end = 1000
     
-    return startDate, end, klay_count,Selectbox,Selectbox_compare,commission_fee
+    return startDate, end, klay_count,commission_fee,Category_choice,Category_compare_choice,Selectbox,Selectbox_compare

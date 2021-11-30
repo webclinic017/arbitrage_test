@@ -1,9 +1,9 @@
-import os
-from utils.Strategy import Trend
-path = './utils/Strategy/'
-folders = os.listdir(path)
+from utils.Strategy import Candles
 
-print([x[:-3] for x in folders])
 
-option = [prop for prop in dir(Trend) if '_Strategy' in prop]
-print(option)
+methods = {'Candles': Candles.Run}
+
+method_name = 'Candles'
+
+if method_name in methods:
+    methods[method_name]()

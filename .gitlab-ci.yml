@@ -12,23 +12,20 @@ ver:
     - conda create --name myenv
     - conda init bash
     - source ~/.bashrc
-    - conda activate myenv 
+    - conda activate myenv
 
 init:
   stage: init
   script:
     - pip install -r requirements.txt
     - conda install -c conda-forge ta-lib
-    
 
 deploy_staging:
   stage: deploy
-  variables:
-    HEROKU_API_KEY : $HEROKU_API_KEY
   script:
     - git remote add heroku https://heroku:$HEROKU_API_KEY@git.heroku.com/ailab-sample.git
-    - git checkout -b 'master'
     - git push heroku master
+    - echo "Deployed to Staging Server https://ailab-sample.herokuapp.com"
   environment:
     name: staging
     url: https://ailab-sample.herokuapp.com/
