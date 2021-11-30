@@ -23,7 +23,6 @@ def Template(df) :
     # Set page-config
     #--------------------------------------------------
     st.set_page_config(page_title="Klay_To_BTC",page_icon=":chart_with_upwards_trend:", layout="centered", initial_sidebar_state='expanded')
-    option = [prop for prop in dir(Alpha_Function)if '_Strategy' in prop]
     #~-=~-=~-=~-=~-=~-=~-=~-=~-=~-=~-=~-=~-=~-=~-=~-=~-
     # Set style
     #--------------------------------------------------
