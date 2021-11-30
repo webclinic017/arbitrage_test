@@ -3,7 +3,7 @@ import pandas as pd
 import numpy as np
 import datetime
 from datetime import datetime as dt
-from utils import Alpha_Function
+from utils.Strategy import Alpha_Function
 
 def stats_df(stats) :
     stats_df = pd.DataFrame(stats)
@@ -63,7 +63,7 @@ def Template() :
         st.markdown("**운용기간**")
         start_date = st.date_input("시작일", datetime.date.today() - datetime.timedelta(days=100),help = '`Select` start_date to get started 😏')
         end_date = st.date_input("종료일", datetime.date.today(),help = '`Select` end_date to get started 😏')
-
+        
         st.markdown("**운용Klay갯수**")
         klay_count = st.number_input("일일당 추가할 klay 갯수",
                 value=100,

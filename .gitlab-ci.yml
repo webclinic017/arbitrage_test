@@ -1,4 +1,4 @@
-image: "python:3.7"
+image: continuumio/miniconda3:latest
 
 stages:
   - ver
@@ -8,13 +8,18 @@ stages:
 ver:
   stage: ver
   script:
-    - python --version
     - whoami
+    - conda create --name myenv
+    - conda init bash
+    - source ~/.bashrc
+    - conda activate myenv 
 
 init:
   stage: init
   script:
     - pip install -r requirements.txt
+    - conda install -c conda-forge ta-lib
+    
 
 deploy_staging:
   stage: deploy

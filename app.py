@@ -1,9 +1,8 @@
 import streamlit as st
-import datetime
 from utils import data_crawler
 from utils import template
 from utils import simulation
-from utils.Alpha_Function import Run_Algo
+from utils.Strategy.Alpha_Function import Run_Algo
 
 #~-=~-=~-=~-=~-=~-=~-=~-=~-=~-=~-=~-=~-=~-=~-=~-=~-
 #Set Template
@@ -24,5 +23,6 @@ net1,net2 = Run_Algo(Selectbox,Selectbox_compare,klay_count,commission_fee,df_bt
 #~-=~-=~-=~-=~-=~-=~-=~-=~-=~-=~-=~-=~-=~-=~-=~-=~-
 #BactTesting
 #--------------------------------------------------
-simulation.trading_history(Selectbox,Selectbox_compare,df_klay,df_btc,net1,net2)
-
+st.subheader(f'백테스팅 결과')
+fig = simulation.trading_history(Selectbox,Selectbox_compare,df_klay,df_btc,net1,net2)
+st.pyplot(fig)

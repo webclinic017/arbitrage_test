@@ -3,7 +3,6 @@ import matplotlib.dates as dates
 import streamlit as st
 
 def trading_history(Selectbox,Selectbox_compare,klay,btc,net,net2, std=2):
-    st.subheader(f'백테스팅 결과')
     #set plot
     fig = plt.figure(figsize=(20,20))
     fig.patch.set_alpha(0.5)
@@ -83,7 +82,7 @@ def trading_history(Selectbox,Selectbox_compare,klay,btc,net,net2, std=2):
     bottom_axes.legend(ncol=1,loc=2,frameon=True,fontsize=10, borderpad=.6, prop={'size': 20})
     bottom_axes.xaxis.set_major_locator(dates.MonthLocator())
 
-    st.pyplot(fig)
+    return fig
 
 
     
