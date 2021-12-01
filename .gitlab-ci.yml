@@ -18,7 +18,7 @@ init:
   stage: init
   script:
     - pip install -r requirements.txt
-    - conda install -c conda-forge ta-lib
+    - conda install -c conda-forge ta-lib -y
 
 deploy_staging:
   stage: deploy
