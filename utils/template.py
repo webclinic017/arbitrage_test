@@ -19,6 +19,7 @@ def stats_df(stats) :
     return stats_df
 
 def Template(df) :
+    
     #~-=~-=~-=~-=~-=~-=~-=~-=~-=~-=~-=~-=~-=~-=~-=~-=~-
     # Set page-config
     #--------------------------------------------------
@@ -98,24 +99,6 @@ def Template(df) :
                                 key="Selectbox",
                                 help="`Select` One Of The Strategy 😏"
                             )
-        
-    # with st.sidebar.form(key="my_form3"):
-    #     st.subheader('**비교할 전략**')
-    #     Selectbox_compare = st.selectbox(
-    #         "Select Strategy",
-    #         options=option,
-    #         help="`Select` One Of The Strategy 😏"
-    #     )
-        
-    #     st.subheader('**테스트할 전략**')
-    #     Selectbox = st.selectbox(
-    #         "Select Strategy",
-    #         options=option[::-1],
-    #         help="`Select` One Of The Strategy 😏"
-    #     )
-        
-    #     pressed2 = st.form_submit_button("Run")
-
 
     startDate = dt.strptime(str(start_date), "%Y-%m-%d")
     startDate = int(dt.timestamp(startDate)) * 1000
