@@ -10,7 +10,7 @@ def trading_history(Selectbox,Selectbox_compare,klay,btc,net,net2, std=2):
     plt.xlim([klay.index.min(), klay.index.max()])
     plt.rcParams.update({'font.size': 22})
     plt.rcParams['axes.facecolor'] = '#EBECE5'
-
+    
     top_axes = plt.subplot2grid((6,4), (0,0), rowspan=3, colspan=4)
     bottom_axes2 = plt.subplot2grid((6,4), (3,0), rowspan=1, colspan=4, sharex=top_axes)
     bottom_axes1 = plt.subplot2grid((6,4), (4,0), rowspan=1, colspan=4, sharex=top_axes)

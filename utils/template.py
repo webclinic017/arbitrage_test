@@ -101,9 +101,6 @@ def Template(df) :
                             )
 
     startDate = dt.strptime(str(start_date), "%Y-%m-%d")
-    startDate = int(dt.timestamp(startDate)) * 1000
-    end = (end_date - start_date).days
-    if end > 1000 :
-        end = 1000
+    endDate = dt.strptime(str(end_date), "%Y-%m-%d")
     
-    return startDate, end, klay_count,commission_fee,Category_choice,Category_compare_choice,Selectbox,Selectbox_compare
+    return startDate, endDate, klay_count,commission_fee,Category_choice,Category_compare_choice,Selectbox,Selectbox_compare

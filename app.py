@@ -3,14 +3,7 @@ from utils import Strategy_list
 from utils import data_crawler
 from utils import template
 from utils import simulation
-from utils.Strategy import Candles
-from utils.Strategy import Etc
-from utils.Strategy import Momentum
-from utils.Strategy import Overlap
-from utils.Strategy import Statistics
-from utils.Strategy import Trend
-from utils.Strategy import Volatility
-from utils.Strategy import Volume
+from utils.Strategy import Candles,Etc,Momentum,Overlap,Statistics,Trend,Volatility,Volume
 
 #~-=~-=~-=~-=~-=~-=~-=~-=~-=~-=~-=~-=~-=~-=~-=~-=~-
 #Set Strategy_list
@@ -20,13 +13,13 @@ Strategy_list = Strategy_list.get_Strategy_list()
 #~-=~-=~-=~-=~-=~-=~-=~-=~-=~-=~-=~-=~-=~-=~-=~-=~-
 #Set Template
 #--------------------------------------------------
-startDate, end, klay_count,commission_fee,Category_choice,Category_compare_choice,Selectbox,Selectbox_compare = template.Template(Strategy_list)
+startDate, endDate, klay_count,commission_fee,Category_choice,Category_compare_choice,Selectbox,Selectbox_compare = template.Template(Strategy_list)
     
 #~-=~-=~-=~-=~-=~-=~-=~-=~-=~-=~-=~-=~-=~-=~-=~-=~-
 #Data input
 #--------------------------------------------------
-df_klay = data_crawler.klay(startDate,end)
-df_btc = data_crawler.btc(startDate,end)
+df_klay = data_crawler.klay(startDate,endDate)
+df_btc = data_crawler.btc(startDate,endDate)
 
 #~-=~-=~-=~-=~-=~-=~-=~-=~-=~-=~-=~-=~-=~-=~-=~-=~-
 #Run Algorithm
