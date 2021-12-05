@@ -17,11 +17,16 @@ ver:
 init:
   stage: init
   script:
+<<<<<<< HEAD
     - conda install -c conda-forge ta-lib
     - pip install -r requirements.txt
     - pip install git+https://github.com/MunSunouk/messari-python-api.git
     
 
+=======
+    - conda install -c conda-forge ta-lib -y
+    - pip install -r requirements.txt
+>>>>>>> dd0c9423a4f6b23980d7ed8275334e6da329daf7
 
 deploy_staging:
   stage: deploy
