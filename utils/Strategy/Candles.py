@@ -1,6 +1,6 @@
 import pandas as pd
 import numpy as np
-from talib import *
+import pandas_ta as ta
 
 def Run(Selectbox,klay_count,commission_fee,df_btc,df_klay) :
     
@@ -10,8 +10,8 @@ def Run(Selectbox,klay_count,commission_fee,df_btc,df_klay) :
 
 def Shootingstar_Strategy(klay_count,commission_fee,df_klay,df_btc) :
     def signal(df) :
-        signal = CDLSHOOTINGSTAR(df.Open,df.High,df.Low,df.Close)
-        return list(signal)
+        signal = df.ta.cdl_pattern(name="shootingstar")
+        return list(signal.iloc[:, 0])
 
     signal_klay = signal(df_klay)
     signal_btc = signal(df_btc)
@@ -47,8 +47,8 @@ def Shootingstar_Strategy(klay_count,commission_fee,df_klay,df_btc) :
 
 def doji_Strategy(klay_count,commission_fee,df_klay,df_btc) :
     def signal(df) :
-        signal = (df.Open,df.High,df.Low,df.Close)
-        return list(signal)
+        signal = df.ta.cdl_pattern(name="doji")
+        return list(signal.iloc[:, 0])
 
     signal_klay = signal(df_klay)
     signal_btc = signal(df_btc)
@@ -84,8 +84,8 @@ def doji_Strategy(klay_count,commission_fee,df_klay,df_btc) :
 
 def longleggeddoji_Strategy(klay_count,commission_fee,df_klay,df_btc) :
     def signal(df) :
-        signal = CDLDOJI(df.Open,df.High,df.Low,df.Close)
-        return list(signal)
+        signal = df.ta.cdl_pattern(name="longleggeddoji")
+        return list(signal.iloc[:, 0])
 
     signal_klay = signal(df_klay)
     signal_btc = signal(df_btc)
@@ -121,8 +121,8 @@ def longleggeddoji_Strategy(klay_count,commission_fee,df_klay,df_btc) :
 
 def hammer_Strategy(klay_count,commission_fee,df_klay,df_btc) :
     def signal(df) :
-        signal = CDLHAMMER(df.Open,df.High,df.Low,df.Close)
-        return list(signal)
+        signal = df.ta.cdl_pattern(name="hammer")
+        return list(signal.iloc[:, 0])
 
     signal_klay = signal(df_klay)
     signal_btc = signal(df_btc)
@@ -158,8 +158,8 @@ def hammer_Strategy(klay_count,commission_fee,df_klay,df_btc) :
 
 def dojistar_Strategy(klay_count,commission_fee,df_klay,df_btc) :
     def signal(df) :
-        signal = CDLDOJISTAR(df.Open,df.High,df.Low,df.Close)
-        return list(signal)
+        signal = df.ta.cdl_pattern(name="dojistar")
+        return list(signal.iloc[:, 0])
 
     signal_klay = signal(df_klay)
     signal_btc = signal(df_btc)
@@ -195,8 +195,8 @@ def dojistar_Strategy(klay_count,commission_fee,df_klay,df_btc) :
 
 def takuri_Strategy(klay_count,commission_fee,df_klay,df_btc) :
     def signal(df) :
-        signal = CDLTAKURI(df.Open,df.High,df.Low,df.Close)
-        return list(signal)
+        signal = df.ta.cdl_pattern(name="takuri")
+        return list(signal.iloc[:, 0])
 
     signal_klay = signal(df_klay)
     signal_btc = signal(df_btc)
@@ -232,8 +232,8 @@ def takuri_Strategy(klay_count,commission_fee,df_klay,df_btc) :
 
 def inside_Strategy(klay_count,commission_fee,df_klay,df_btc) :
     def signal(df) :
-        signal = CDL3INSIDE(df.Open,df.High,df.Low,df.Close)
-        return list(signal)
+        signal = df.ta.cdl_pattern(name="inside")
+        return list(signal.iloc[:, 0])
 
     signal_klay = signal(df_klay)
     signal_btc = signal(df_btc)
@@ -269,8 +269,8 @@ def inside_Strategy(klay_count,commission_fee,df_klay,df_btc) :
 
 def rickshawman_Strategy(klay_count,commission_fee,df_klay,df_btc) :
     def signal(df) :
-        signal = CDLRICKSHAWMAN(df.Open,df.High,df.Low,df.Close)
-        return list(signal)
+        signal = df.ta.cdl_pattern(name="rickshawman")
+        return list(signal.iloc[:, 0])
 
     signal_klay = signal(df_klay)
     signal_btc = signal(df_btc)
@@ -306,8 +306,8 @@ def rickshawman_Strategy(klay_count,commission_fee,df_klay,df_btc) :
 
 def longline_Strategy(klay_count,commission_fee,df_klay,df_btc) :
     def signal(df) :
-        signal = CDLLONGLINE(df.Open,df.High,df.Low,df.Close)
-        return list(signal)
+        signal = df.ta.cdl_pattern(name="longline")
+        return list(signal.iloc[:, 0])
 
     signal_klay = signal(df_klay)
     signal_btc = signal(df_btc)
@@ -343,8 +343,8 @@ def longline_Strategy(klay_count,commission_fee,df_klay,df_btc) :
 
 def stalledpattern_Strategy(klay_count,commission_fee,df_klay,df_btc) :
     def signal(df) :
-        signal = CDLSTALLEDPATTERN(df.Open,df.High,df.Low,df.Close)
-        return list(signal)
+        signal = df.ta.cdl_pattern(name="stalledpattern")
+        return list(signal.iloc[:, 0])
 
     signal_klay = signal(df_klay)
     signal_btc = signal(df_btc)
@@ -380,8 +380,8 @@ def stalledpattern_Strategy(klay_count,commission_fee,df_klay,df_btc) :
 
 def advanceblock_Strategy(klay_count,commission_fee,df_klay,df_btc) :
     def signal(df) :
-        signal = CDLADVANCEBLOCK(df.Open,df.High,df.Low,df.Close)
-        return list(signal)
+        signal = df.ta.cdl_pattern(name="advanceblock")
+        return list(signal.iloc[:, 0])
 
     signal_klay = signal(df_klay)
     signal_btc = signal(df_btc)
@@ -417,8 +417,8 @@ def advanceblock_Strategy(klay_count,commission_fee,df_klay,df_btc) :
 
 def hikkake_Strategy(klay_count,commission_fee,df_klay,df_btc) :
     def signal(df) :
-        signal = CDLHIKKAKE(df.Open,df.High,df.Low,df.Close)
-        return list(signal)
+        signal = df.ta.cdl_pattern(name="hikkake")
+        return list(signal.iloc[:, 0])
 
     signal_klay = signal(df_klay)
     signal_btc = signal(df_btc)
@@ -454,8 +454,8 @@ def hikkake_Strategy(klay_count,commission_fee,df_klay,df_btc) :
 
 def shortline_Strategy(klay_count,commission_fee,df_klay,df_btc) :
     def signal(df) :
-        signal = CDLSHORTLINE(df.Open,df.High,df.Low,df.Close)
-        return list(signal)
+        signal = df.ta.cdl_pattern(name="shortline")
+        return list(signal.iloc[:, 0])
 
     signal_klay = signal(df_klay)
     signal_btc = signal(df_btc)
@@ -491,8 +491,8 @@ def shortline_Strategy(klay_count,commission_fee,df_klay,df_btc) :
 
 def matchinglow_Strategy(klay_count,commission_fee,df_klay,df_btc) :
     def signal(df) :
-        signal = CDLMATCHINGLOW(df.Open,df.High,df.Low,df.Close)
-        return list(signal)
+        signal = df.ta.cdl_pattern(name="matchinglow")
+        return list(signal.iloc[:, 0])
 
     signal_klay = signal(df_klay)
     signal_btc = signal(df_btc)
@@ -528,8 +528,8 @@ def matchinglow_Strategy(klay_count,commission_fee,df_klay,df_btc) :
 
 def highwave_Strategy(klay_count,commission_fee,df_klay,df_btc) :
     def signal(df) :
-        signal = CDLHIGHWAVE(df.Open,df.High,df.Low,df.Close)
-        return list(signal)
+        signal = df.ta.cdl_pattern(name="highwave")
+        return list(signal.iloc[:, 0])
 
     signal_klay = signal(df_klay)
     signal_btc = signal(df_btc)
@@ -565,8 +565,8 @@ def highwave_Strategy(klay_count,commission_fee,df_klay,df_btc) :
 
 def spinningtop_Strategy(klay_count,commission_fee,df_klay,df_btc) :
     def signal(df) :
-        signal = CDLSPINNINGTOP(df.Open,df.High,df.Low,df.Close)
-        return list(signal)
+        signal = df.ta.cdl_pattern(name="spinningtop")
+        return list(signal.iloc[:, 0])
 
     signal_klay = signal(df_klay)
     signal_btc = signal(df_btc)
@@ -602,8 +602,8 @@ def spinningtop_Strategy(klay_count,commission_fee,df_klay,df_btc) :
 
 def marubozu_Strategy(klay_count,commission_fee,df_klay,df_btc) :
     def signal(df) :
-        signal = CDLMARUBOZU(df.Open,df.High,df.Low,df.Close)
-        return list(signal)
+        signal = df.ta.cdl_pattern(name="marubozu")
+        return list(signal.iloc[:, 0])
 
     signal_klay = signal(df_klay)
     signal_btc = signal(df_btc)
@@ -639,8 +639,8 @@ def marubozu_Strategy(klay_count,commission_fee,df_klay,df_btc) :
 
 def belthold_Strategy(klay_count,commission_fee,df_klay,df_btc) :
     def signal(df) :
-        signal = CDLBELTHOLD(df.Open,df.High,df.Low,df.Close)
-        return list(signal)
+        signal = df.ta.cdl_pattern(name="belthold")
+        return list(signal.iloc[:, 0])
 
     signal_klay = signal(df_klay)
     signal_btc = signal(df_btc)
@@ -676,8 +676,8 @@ def belthold_Strategy(klay_count,commission_fee,df_klay,df_btc) :
 
 def closingmarubozu_Strategy(klay_count,commission_fee,df_klay,df_btc) :
     def signal(df) :
-        signal = CDLCLOSINGMARUBOZU(df.Open,df.High,df.Low,df.Close)
-        return list(signal)
+        signal = df.ta.cdl_pattern(name="closingmarubozu")
+        return list(signal.iloc[:, 0])
 
     signal_klay = signal(df_klay)
     signal_btc = signal(df_btc)
@@ -713,8 +713,8 @@ def closingmarubozu_Strategy(klay_count,commission_fee,df_klay,df_btc) :
 
 def engulfing_Strategy(klay_count,commission_fee,df_klay,df_btc) :
     def signal(df) :
-        signal = CDLENGULFING(df.Open,df.High,df.Low,df.Close)
-        return list(signal)
+        signal = df.ta.cdl_pattern(name="engulfing")
+        return list(signal.iloc[:, 0])
 
     signal_klay = signal(df_klay)
     signal_btc = signal(df_btc)
@@ -750,8 +750,8 @@ def engulfing_Strategy(klay_count,commission_fee,df_klay,df_btc) :
 
 def dragonflydoji_Strategy(klay_count,commission_fee,df_klay,df_btc) :
     def signal(df) :
-        signal = CDLDRAGONFLYDOJI(df.Open,df.High,df.Low,df.Close)
-        return list(signal)
+        signal = df.ta.cdl_pattern(name="dragonflydoji")
+        return list(signal.iloc[:, 0])
 
     signal_klay = signal(df_klay)
     signal_btc = signal(df_btc)
@@ -787,8 +787,8 @@ def dragonflydoji_Strategy(klay_count,commission_fee,df_klay,df_btc) :
 
 def gravestonedoji_Strategy(klay_count,commission_fee,df_klay,df_btc) :
     def signal(df) :
-        signal = CDLGRAVESTONEDOJI(df.Open,df.High,df.Low,df.Close)
-        return list(signal)
+        signal = df.ta.cdl_pattern(name="gravestonedoji")
+        return list(signal.iloc[:, 0])
 
     signal_klay = signal(df_klay)
     signal_btc = signal(df_btc)
@@ -824,8 +824,8 @@ def gravestonedoji_Strategy(klay_count,commission_fee,df_klay,df_btc) :
 
 def harami_Strategy(klay_count,commission_fee,df_klay,df_btc) :
     def signal(df) :
-        signal = CDLHARAMI(df.Open,df.High,df.Low,df.Close)
-        return list(signal)
+        signal = df.ta.cdl_pattern(name="harami")
+        return list(signal.iloc[:, 0])
 
     signal_klay = signal(df_klay)
     signal_btc = signal(df_btc)
