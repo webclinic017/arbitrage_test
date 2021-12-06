@@ -18,9 +18,6 @@ init:
   stage: init
   script:
     - conda install -c conda-forge ta-lib -y
-    - vi .bash_profile
-    - LD_LIBRARY_PATH=./lib:$LD_LIBRARY_PATH
-    - export LD_LIBRARY_PATH
     - pip install -r requirements.txt
     - pip show talib
     - pip show ta-lib
