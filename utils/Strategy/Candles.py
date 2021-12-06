@@ -1,6 +1,6 @@
 import pandas as pd
 import numpy as np
-from talib import *
+from ta-lib import *
 
 def Run(Selectbox,klay_count,commission_fee,df_btc,df_klay) :
     
