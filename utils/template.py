@@ -63,6 +63,12 @@ def Template(df) :
         start_date = st.date_input("시작일", datetime.date.today() - datetime.timedelta(days=100),help = '`Select` start_date to get started 😏')
         end_date = st.date_input("종료일", datetime.date.today(),help = '`Select` end_date to get started 😏')
         
+        st.markdown("**운용할 총 Klay갯수**")
+        total_klay = st.number_input("기간동안 사용할 klay 갯수",
+                value=10000,
+                min_value=1000,
+                help = '기간동안 사용할 `klay` 갯수 😏')
+
         st.markdown("**운용Klay갯수**")
         klay_count = st.number_input("일일당 추가할 klay 갯수",
                 value=100,
@@ -103,4 +109,4 @@ def Template(df) :
     startDate = dt.strptime(str(start_date), "%Y-%m-%d")
     endDate = dt.strptime(str(end_date), "%Y-%m-%d")
     
-    return startDate, endDate, klay_count,commission_fee,Category_choice,Category_compare_choice,Selectbox,Selectbox_compare
+    return startDate, endDate, total_klay, klay_count,1-commission_fee,Category_choice,Category_compare_choice,Selectbox,Selectbox_compare
