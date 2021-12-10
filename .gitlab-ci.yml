@@ -19,7 +19,7 @@ init:
   script:
     - conda install -c conda-forge ta-lib -y
     - pip install -r requirements.txt
-    - pip install git+https://github.com/MunSunouk/messari-python-api.git
+    - python -c "import talib; print(talib.__ta_version__)"
 
 deploy_staging:
   stage: deploy
