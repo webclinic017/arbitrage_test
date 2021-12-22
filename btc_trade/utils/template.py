@@ -77,18 +77,6 @@ def Template(df) :
         st.form_submit_button("Run")
 
 
-    st.sidebar.subheader('**비교할 전략 선택**')
-    Category_compare = df['Category'].unique()
-    Category_compare_choice = st.sidebar.selectbox("Select Category", Category_compare,key="Category_compare")
-    Strategy_compare_option = df[(df['Category'] == Category_compare_choice)]
-    Selectbox_compare = st.sidebar.selectbox(
-                                    "Select Strategy",
-                                    options=Strategy_compare_option,
-                                    key="Selectbox_compare",
-                                    help="`Select` One Of The Strategy 😏"
-
-                                )
-
     st.sidebar.subheader('**테스트할 전략 선택**')
     Category = df['Category'].unique()
     Category_choice = st.sidebar.selectbox("Select Category", Category,key="Category")   
@@ -103,4 +91,4 @@ def Template(df) :
     startDate = dt.strptime(str(start_date), "%Y-%m-%d")
     endDate = dt.strptime(str(end_date), "%Y-%m-%d")
     
-    return startDate, endDate, total_BTC , 1-commission_fee,Category_choice,Category_compare_choice,Selectbox,Selectbox_compare
+    return startDate, endDate, total_BTC , 1-commission_fee,Category_choice,Selectbox

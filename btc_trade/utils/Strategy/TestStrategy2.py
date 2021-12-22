@@ -1,7 +1,7 @@
 import backtrader as bt
 
 # Create a Stratey
-class Test_Strategy(bt.Strategy):
+class Test2_Strategy(bt.Strategy):
     params = (
         ('maperiod', 15),
     )
@@ -100,32 +100,3 @@ class Test_Strategy(bt.Strategy):
 
                 # Keep track of the created order to avoid a 2nd order
                 self.order = self.sell()
-
-class Turtle_Strategy(bt.Strategy):
-    params = (
-        ('interval', 20),
-        )
-
-    def __init__(self):
-        self.start_cash = self.broker.getvalue()
-        self.interval = self.params.interval
-        self.closes = list()
-        self.in_position = False
-    def next(self):
-        self.closes.append(self.data.close)
-
-        if len(self.closes) >= self.params.interval:
-            local_min = min(self.closes[-self.params.interval - 1:-1])
-            local_max = max(self.closes[-self.params.interval - 1:-1])
-
-            if self.closes[-1] <= local_min:
-                self.in_position = True
-                self.buy(size=100)
-
-            if self.closes[-1] >= local_max: # and in_position:
-                self.sell(size=100)
-                self.in_position = False
-
-    def stop(self):
-        pnl = round(self.broker.getvalue() - self.start_cash, 2)
-        print('Interval: {} Final PnL: {}'.format(self.params.interval, pnl))
