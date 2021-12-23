@@ -5,7 +5,7 @@ from utils import Strategy_list
 from utils import data_crawler
 from utils import template
 from utils.Strategy.TestStrategy import *
-from utils.Strategy.TestStrategy2 import *
+from utils.Strategy.Candles import *
 import empyrical as ep
 import pandas as pd
 import numpy as np

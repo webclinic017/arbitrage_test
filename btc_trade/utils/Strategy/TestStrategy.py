@@ -129,3 +129,5 @@ class Turtle_Strategy(bt.Strategy):
     def stop(self):
         pnl = round(self.broker.getvalue() - self.start_cash, 2)
         print('Interval: {} Final PnL: {}'.format(self.params.interval, pnl))
+        
+                
